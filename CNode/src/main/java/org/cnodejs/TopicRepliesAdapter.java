@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,14 +20,14 @@ public class TopicRepliesAdapter extends RecyclerView.Adapter<TopicRepliesAdapte
         public ImageView avatar;
         public TextView user;
         public TextView title;
-        public TextView content;
+        public WebView content;
 
         public ViewHolder(View itemView) {
             super(itemView);
             this.avatar = (ImageView) itemView.findViewById(R.id.avatar);
             this.user = (TextView) itemView.findViewById(R.id.user);
             this.title = (TextView) itemView.findViewById(R.id.title);
-            this.content = (TextView) itemView.findViewById(R.id.content);
+            this.content = (WebView) itemView.findViewById(R.id.content);
         }
     }
 
@@ -80,6 +81,10 @@ public class TopicRepliesAdapter extends RecyclerView.Adapter<TopicRepliesAdapte
         switch (holder.getItemViewType()) {
             case VIEW_TYPE_REPLY:
                 holder.avatar.setImageBitmap(null);
+                holder.content.loadData("", "text/html", null);
+                break;
+            case VIEW_TYPE_HEADER:
+                holder.content.loadData("", "text/html", null);
                 break;
         }
     }
